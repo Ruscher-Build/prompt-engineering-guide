@@ -8,12 +8,52 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
     <div id="root"></div>
-    <script type="text/babel" src="./src/App.jsx"></script>
+    
     <script type="text/babel">
-        ReactDOM.render(<PromptEngineeringGuide />, document.getElementById('root'));
+        // Import Lucide Icons
+        const {
+            ChevronRight,
+            Lightbulb,
+            Brain,
+            Target,
+            Code,
+            Zap,
+            Check,
+            Copy,
+            Moon,
+            Sun,
+            ArrowLeft,
+            Sparkles,
+            Network
+        } = lucide;
+
+        // Your full App.jsx content goes here (copy everything from App.jsx)
+        const PromptEngineeringGuide = () => {
+           {
+  "name": "prompt-engineering-guide",
+  "version": "1.0.0",
+  "description": "Interactive Prompt Engineering Guide",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve",
+    "build": "echo 'No build step needed'"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "keywords": ["prompt-engineering", "ai", "guide"],
+  "author": "Creative Intelligence Lab"
+}
+        };
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PromptEngineeringGuide />);
     </script>
 </body>
 </html>
