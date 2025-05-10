@@ -1,746 +1,729 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Engineering Guide - Creative Intelligence Lab</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8" /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Prompt Engineering Guide - Creative Intelligence Lab&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Import Lucide Icons</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>ChevronRight,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Lightbulb,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Brain,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Target,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Code,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Zap,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Check,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Copy,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Moon,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Sun,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>ArrowLeft,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Sparkles,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Network</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} = lucide;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Main Component</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const PromptEngineeringGuide = () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [darkMode, setDarkMode] = React.useState(false);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [currentPage, setCurrentPage] = React.useState('home');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [copied, setCopied] = React.useState(false);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Creative Intelligence Lab Brand Colors</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const colors = {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>darkTeal: '#004D40',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>grayBlue: '#90A4AE',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>cyan: '#00BCD4',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>navy: '#1a1a2e',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>oliveGreen: '#5a6f65',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>darkerTeal: '#00202c',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>lightGray: '#f8fafc',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>midGray: '#e2e8f0'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Theme classes with brand colors</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const bgClass = darkMode ? 'bg-[#1a1a2e]' : 'bg-gray-50';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const textClass = darkMode ? 'text-gray-100' : 'text-[#1a1a2e]';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const accentColor = '#00BCD4';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Navigation</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const navigateTo = (page) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setCurrentPage(page);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>window.scrollTo(0, 0);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const toggleDarkMode = () =&gt; setDarkMode(!darkMode);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Content sections</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const sections = [</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>id: 'basics',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'The Fundamentals',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>icon: &lt;Brain className="w-6 h-6" /&gt;,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'Master the building blocks of effective prompts',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.darkTeal</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>id: 'builder',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Prompt Lab',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>icon: &lt;Network className="w-6 h-6" /&gt;,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'Experiment and create prompts in real-time',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.cyan</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>id: 'techniques',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Advanced Methods',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>icon: &lt;Zap className="w-6 h-6" /&gt;,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'Apply sophisticated techniques for complex tasks',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.oliveGreen</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>];</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Render different pages</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const renderPage = () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>switch (currentPage) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>case 'home':</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>return &lt;HomePage darkMode={darkMode} navigateTo={navigateTo} sections={sections} colors={colors} /&gt;;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>case 'basics':</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>return &lt;BasicsPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} /&gt;;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>case 'builder':</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>return &lt;BuilderPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} /&gt;;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>case 'techniques':</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>return &lt;TechniquesPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} /&gt;;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>default:</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>return &lt;HomePage darkMode={darkMode} navigateTo={navigateTo} sections={sections} colors={colors} /&gt;;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div className={`min-h-screen ${bgClass} ${textClass} transition-colors duration-300`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Header */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;header className={`sticky top-0 z-50 ${cardBgClass} border-b ${borderClass} shadow-sm`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="flex items-center gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>{currentPage !== 'home' &amp;&amp; (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;button<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onClick={() =&gt; navigateTo('home')}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>className="p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;ArrowLeft className="w-5 h-5" /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>)}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;h1 className="text-xl font-bold flex items-center gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;Network className="w-6 h-6" style={{ color: accentColor }} /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Prompt Engineering Guide</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>onClick={toggleDarkMode}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>className="p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>{darkMode ? &lt;Sun className="w-5 h-5" /&gt; : &lt;Moon className="w-5 h-5" /&gt;}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/header&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Main Content */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;main className="max-w-6xl mx-auto px-4 py-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>{renderPage()}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/main&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Home Page Component</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const HomePage = ({ darkMode, navigateTo, sections, colors }) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div className="space-y-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Hero Section */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="text-center max-w-3xl mx-auto"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="flex justify-center mb-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="relative"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;Sparkles className="w-16 h-16" style={{ color: colors.cyan }} /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="absolute inset-0 animate-pulse opacity-50"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;Sparkles className="w-16 h-16" style={{ color: colors.grayBlue }} /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h1 className="text-4xl font-bold mb-4"&gt;Master Prompt Engineering&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p className="text-xl opacity-80 mb-6"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>Transform your AI interactions with precise, creative prompts</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p className="text-lg opacity-60"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>From Creative Intelligence Lab - Learn the fundamentals, practice in our lab, and master advanced techniques</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Key Insight */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6 max-w-3xl mx-auto`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-3xl font-bold mb-2" style={{ color: colors.cyan }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>Quality In = Quality Out</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p className="opacity-80"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>The clarity and specificity of your prompt directly determines the quality of AI responses</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Navigation Cards */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="grid md:grid-cols-3 gap-6"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>{sections.map((section) =&gt; (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>key={section.id}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>onClick={() =&gt; navigateTo(section.id)}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>className={`${cardBgClass} border ${borderClass} rounded-lg p-6 text-left transition-all duration-300 hover:shadow-lg group transform hover:-translate-y-1`}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>onMouseEnter={(e) =&gt; e.currentTarget.style.borderColor = section.color}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>onMouseLeave={(e) =&gt; e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="flex items-center gap-3 mb-3"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="p-2 rounded-lg" style={{ backgroundColor: `${section.color}20`, color: section.color }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>{section.icon}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;h3 className="text-lg font-semibold"&gt;{section.title}&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p className="text-sm opacity-70 mb-4"&gt;{section.description}&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="flex items-center text-sm group-hover:gap-2 transition-all" style={{ color: section.color }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Explore &lt;ChevronRight className="w-4 h-4" /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>))}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Quick Stats */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-2xl font-bold" style={{ color: colors.cyan }}&gt;21&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm opacity-60"&gt;Average words in successful prompts&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-2xl font-bold" style={{ color: colors.darkTeal }}&gt;4&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm opacity-60"&gt;Essential components&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-2xl font-bold" style={{ color: colors.oliveGreen }}&gt;3&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm opacity-60"&gt;Key techniques to master&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-2xl font-bold" style={{ color: colors.navy }}&gt;∞&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm opacity-60"&gt;Possible applications&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Basics Page Component</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const BasicsPage = ({ darkMode, navigateTo, colors }) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [activeComponent, setActiveComponent] = React.useState('task');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const components = {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>task: {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Task',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'The specific action you want the AI to perform',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>example: 'Generate a professional email response',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>tip: 'Start with action verbs like "Generate", "Write", "Analyze"',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.cyan</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>context: {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Context',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'Background information that helps AI understand your needs',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>example: 'For a customer complaint about delayed shipping',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>tip: 'Include audience, purpose, and any constraints',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.darkTeal</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>examples: {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Examples',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'References that show the desired output style',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>example: 'Following this email template: [sample]',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>tip: 'Show, don\'t just tell - provide samples when possible',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.oliveGreen</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>format: {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Format',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'How you want the output structured',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>example: 'As a 2-paragraph email with subject line',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>tip: 'Specify structure, length, and any special requirements',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.navy</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div className="space-y-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="max-w-3xl"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h1 className="text-3xl font-bold mb-4"&gt;The Anatomy of a Great Prompt&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p className="text-lg opacity-80"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>Every effective prompt contains these four essential components. Click each to learn more.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Interactive Component Selector */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>{Object.entries(components).map(([key, component]) =&gt; (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>key={key}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>onClick={() =&gt; setActiveComponent(key)}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>className={`p-4 rounded border transition-all ${</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>activeComponent === key<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>? 'border-opacity-100 shadow-md'<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>: 'border-opacity-40 hover:border-opacity-70'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>}`}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>style={{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>borderColor: component.color,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>backgroundColor: activeComponent === key ? `${component.color}10` : 'transparent'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>}}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;div className="font-medium" style={{ color: activeComponent === key ? component.color : undefined }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>{component.title}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>))}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="rounded p-6" style={{ backgroundColor: darkMode ? '#00202c' : '#f8fafc' }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 className="text-lg font-semibold mb-2" style={{ color: components[activeComponent].color }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>{components[activeComponent].title}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p className="mb-3 opacity-80"&gt;{components[activeComponent].description}&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="mb-3"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;strong className="text-sm"&gt;Example:&lt;/strong&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className={`${cardBgClass} border rounded p-2 mt-1 text-sm`} style={{ borderColor: colors.grayBlue }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>{components[activeComponent].example}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;strong&gt;Pro Tip:&lt;/strong&gt; {components[activeComponent].tip}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Example Prompt */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h3 className="font-semibold mb-4"&gt;Complete Example&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="font-mono text-sm rounded p-4 leading-6" style={{ backgroundColor: darkMode ? '#00202c' : '#f8fafc' }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;span style={{ color: colors.cyan }}&gt;[Generate a professional email response]&lt;/span&gt;{' '}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;span style={{ color: colors.darkTeal }}&gt;for a customer complaint about delayed shipping&lt;/span&gt;{' '}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;span style={{ color: colors.oliveGreen }}&gt;following the company's empathetic but professional tone&lt;/span&gt;{' '}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;span style={{ color: colors.navy }}&gt;formatted as a 2-paragraph email with subject line&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Best Practices */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="grid md:grid-cols-2 gap-6"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 className="font-semibold mb-4" style={{ color: colors.darkTeal }}&gt;✅ Do&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;ul className="space-y-2 text-sm"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;li className="flex items-start gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Be specific and clear</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;li className="flex items-start gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Provide relevant context</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;li className="flex items-start gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Use action verbs</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;li className="flex items-start gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Include examples when helpful</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 className="font-semibold mb-4" style={{ color: colors.oliveGreen }}&gt;❌ Don't&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;ul className="space-y-2 text-sm"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;li className="flex items-start gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}&gt;✗&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Use vague language</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;li className="flex items-start gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}&gt;✗&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Make assumptions</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;li className="flex items-start gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}&gt;✗&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Overload with information</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;li className="flex items-start gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}&gt;✗&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Forget to specify format</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Builder Page Component</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const BuilderPage = ({ darkMode, navigateTo, colors }) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [prompt, setPrompt] = React.useState({</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>task: '',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>context: '',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>examples: '',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>format: ''</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [generatedPrompt, setGeneratedPrompt] = React.useState('');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [copied, setCopied] = React.useState(false);</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const buildPrompt = () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const parts = [];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (prompt.task) parts.push(prompt.task);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (prompt.context) parts.push(prompt.context);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (prompt.examples) parts.push(prompt.examples);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (prompt.format) parts.push(`Format: ${prompt.format}`);</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setGeneratedPrompt(parts.join(' '));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const copyPrompt = async () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (generatedPrompt) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>await navigator.clipboard.writeText(generatedPrompt);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>setCopied(true);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>setTimeout(() =&gt; setCopied(false), 2000);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const loadTemplate = (templatePrompt) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setPrompt(templatePrompt);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>buildPrompt();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const templates = [</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>name: 'Email Response',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>prompt: {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>task: 'Write a professional email response',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>context: 'to a customer inquiry about product specifications',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>examples: 'using a helpful and knowledgeable tone',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>format: '2-3 paragraphs with greeting and signature'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>name: 'Content Creation',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>prompt: {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>task: 'Create a social media post',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>context: 'announcing a new product launch for tech enthusiasts',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>examples: 'in the style of engaging tech brands',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>format: 'under 280 characters with relevant hashtags'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>name: 'Analysis',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>prompt: {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>task: 'Analyze market trends',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>context: 'for renewable energy sector in 2024',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>examples: 'providing data-driven insights',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>format: 'bullet points with key findings and recommendations'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>];</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div className="space-y-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="max-w-3xl"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h1 className="text-3xl font-bold mb-4"&gt;Interactive Prompt Lab&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p className="text-lg opacity-80"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>Experiment and create perfect prompts step by step. Use our templates or build from scratch.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Quick Templates */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h3 className="font-semibold mb-4"&gt;Quick Start Templates&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="grid md:grid-cols-3 gap-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>{templates.map((template) =&gt; (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>key={template.name}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>onClick={() =&gt; loadTemplate(template.prompt)}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>className={`${cardBgClass} border ${borderClass} rounded p-4 text-left transition-all hover:shadow-md`}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>onMouseEnter={(e) =&gt; e.currentTarget.style.borderColor = colors.cyan}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>onMouseLeave={(e) =&gt; e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="font-medium"&gt;{template.name}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="text-xs mt-1" style={{ color: colors.cyan }}&gt;Load Template&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>))}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Builder Form */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="grid md:grid-cols-2 gap-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 className="font-semibold mb-4"&gt;Build Your Prompt&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="space-y-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;label className="block text-sm font-medium mb-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>Task &lt;span style={{ color: colors.cyan }}&gt;*&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>type="text"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>value={prompt.task}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onChange={(e) =&gt; setPrompt({...prompt, task: e.target.value})}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>placeholder="What do you want the AI to do?"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>style={{<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>borderColor: colors.grayBlue,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>backgroundColor: darkMode ? '#00202c' : '#ffffff'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>}}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onFocus={(e) =&gt; e.target.style.borderColor = colors.cyan}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onBlur={(e) =&gt; e.target.style.borderColor = colors.grayBlue}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>/&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;label className="block text-sm font-medium mb-2"&gt;Context&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>type="text"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>value={prompt.context}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onChange={(e) =&gt; setPrompt({...prompt, context: e.target.value})}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>placeholder="Provide background information..."</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>style={{<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>borderColor: colors.grayBlue,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>backgroundColor: darkMode ? '#00202c' : '#ffffff'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>}}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onFocus={(e) =&gt; e.target.style.borderColor = colors.cyan}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onBlur={(e) =&gt; e.target.style.borderColor = colors.grayBlue}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>/&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;label className="block text-sm font-medium mb-2"&gt;Examples/Style&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>type="text"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>value={prompt.examples}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onChange={(e) =&gt; setPrompt({...prompt, examples: e.target.value})}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>placeholder="Reference style or tone..."</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>style={{<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>borderColor: colors.grayBlue,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>backgroundColor: darkMode ? '#00202c' : '#ffffff'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>}}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onFocus={(e) =&gt; e.target.style.borderColor = colors.cyan}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onBlur={(e) =&gt; e.target.style.borderColor = colors.grayBlue}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>/&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;label className="block text-sm font-medium mb-2"&gt;Format&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>type="text"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>value={prompt.format}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onChange={(e) =&gt; setPrompt({...prompt, format: e.target.value})}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>placeholder="How should it be structured?"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>style={{<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>borderColor: colors.grayBlue,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>backgroundColor: darkMode ? '#00202c' : '#ffffff'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>}}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onFocus={(e) =&gt; e.target.style.borderColor = colors.cyan}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>onBlur={(e) =&gt; e.target.style.borderColor = colors.grayBlue}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>/&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>onClick={buildPrompt}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>className="w-full text-white py-3 px-4 rounded transition-all hover:opacity-90 font-medium"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>style={{ backgroundColor: colors.cyan }}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Generate Prompt</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="flex items-center justify-between mb-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;h3 className="font-semibold"&gt;Generated Prompt&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>onClick={copyPrompt}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>disabled={!generatedPrompt}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>className="p-2 rounded transition-colors hover:opacity-80"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>style={{ color: colors.cyan }}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>{copied ? &lt;Check className="w-4 h-4" /&gt; : &lt;Copy className="w-4 h-4" /&gt;}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="min-h-[200px] p-4 rounded border" style={{<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>backgroundColor: darkMode ? '#00202c' : '#f8fafc',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>borderColor: colors.grayBlue</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>}}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>{generatedPrompt || (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="text-center pt-16" style={{ color: colors.grayBlue }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>Your generated prompt will appear here...</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>)}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>{generatedPrompt &amp;&amp; (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="mt-4 text-sm" style={{ color: colors.cyan }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>Word count: {generatedPrompt.split(' ').length}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>)}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Techniques Page Component</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const TechniquesPage = ({ darkMode, navigateTo, colors }) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [activeTechnique, setActiveTechnique] = React.useState('chain-of-thought');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const techniques = {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>'chain-of-thought': {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Chain of Thought',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'Guide AI through step-by-step reasoning',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>example: `Let's think step by step:</span></p>
-<p class="p1"><span class="s1">1. First, identify the problem</span></p>
-<p class="p1"><span class="s1">2. Break it into smaller parts</span></p>
-<p class="p1"><span class="s1">3. Solve each part</span></p>
-<p class="p1"><span class="s1">4. Combine for the final answer`,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>bestFor: ['Math problems', 'Logic puzzles', 'Complex analysis'],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.cyan</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>'few-shot': {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Few-Shot Learning',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'Provide examples to establish patterns',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>example: `Translate English to French:</span></p>
-<p class="p1"><span class="s1">English: "Hello" → French: "Bonjour"</span></p>
-<p class="p1"><span class="s1">English: "Thank you" → French: "Merci"</span></p>
-<p class="p1"><span class="s1">English: "Goodbye" → French: ???`,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>bestFor: ['Pattern recognition', 'Style consistency', 'Format matching'],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.darkTeal</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>'role-playing': {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>title: 'Role-Based Prompting',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>description: 'Assign specific expertise to the AI',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>example: `Act as a professional nutritionist.</span></p>
-<p class="p1"><span class="s1">Provide a meal plan for someone looking to build muscle.</span></p>
-<p class="p1"><span class="s1">Consider dietary restrictions and calorie requirements.`,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>bestFor: ['Expert advice', 'Specialized knowledge', 'Consistent perspective'],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>color: colors.oliveGreen</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div className="space-y-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="max-w-3xl"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h1 className="text-3xl font-bold mb-4"&gt;Advanced Techniques&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p className="text-lg opacity-80"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>Master these three core techniques to dramatically improve your AI interactions.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Technique Selection */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="flex flex-wrap gap-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>{Object.entries(techniques).map(([key, technique]) =&gt; (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>key={key}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>onClick={() =&gt; setActiveTechnique(key)}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>className={`px-4 py-2 rounded transition-all ${</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>activeTechnique === key<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>? 'text-white shadow-md'<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>: `${cardBgClass} border ${borderClass}`</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>}`}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>style={{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>backgroundColor: activeTechnique === key ? technique.color : undefined,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>borderColor: activeTechnique === key ? technique.color : undefined</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>}}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>{technique.title}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>))}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Technique Details */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h2 className="text-xl font-semibold mb-3" style={{ color: techniques[activeTechnique].color }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>{techniques[activeTechnique].title}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p className="text-lg opacity-80 mb-6"&gt;{techniques[activeTechnique].description}&lt;/p&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="space-y-6"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;h3 className="font-medium mb-2"&gt;Example:&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;pre className="rounded p-4 text-sm overflow-x-auto whitespace-pre-wrap" style={{<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>backgroundColor: darkMode ? '#00202c' : '#f8fafc',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>border: `1px solid ${colors.grayBlue}`</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>}}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>{techniques[activeTechnique].example}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/pre&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;h3 className="font-medium mb-2"&gt;Best For:&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="flex flex-wrap gap-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>{techniques[activeTechnique].bestFor.map((use, index) =&gt; (</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;span<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>key={index}<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>className="px-3 py-1 rounded-full text-sm"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>style={{<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                                </span>backgroundColor: `${techniques[activeTechnique].color}20`,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                                </span>color: techniques[activeTechnique].color</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>}}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>{use}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>))}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Practice Exercise */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h3 className="font-semibold mb-4"&gt;Practice Exercise&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="rounded p-4" style={{ backgroundColor: `${colors.cyan}10` }}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p className="font-medium mb-2"&gt;Try it yourself:&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p className="text-sm opacity-80"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>{activeTechnique === 'chain-of-thought' &amp;&amp; "Ask AI to solve: 'If a train travels 60 mph for 2.5 hours, how far does it go?' Use step-by-step thinking."}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>{activeTechnique === 'few-shot' &amp;&amp; "Create a few-shot prompt for converting temperatures from Celsius to Fahrenheit."}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>{activeTechnique === 'role-playing' &amp;&amp; "Ask AI to act as a financial advisor and explain cryptocurrency basics."}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>{/* Summary */}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className={`${cardBgClass} border ${borderClass} rounded-lg p-6 text-center`}&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h3 className="font-semibold mb-2"&gt;Remember&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p className="opacity-80"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>These techniques can be combined for even better results. Mix and match based on your specific needs.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Render the app</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const root = ReactDOM.createRoot(document.getElementById('root'));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>root.render(&lt;PromptEngineeringGuide /&gt;);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // Import Lucide Icons
+        const {
+            ChevronRight,
+            Lightbulb,
+            Brain,
+            Target,
+            Code,
+            Zap,
+            Check,
+            Copy,
+            Moon,
+            Sun,
+            ArrowLeft,
+            Sparkles,
+            Network
+        } = lucide;
+
+        // Main Component
+        const PromptEngineeringGuide = () => {
+            const [darkMode, setDarkMode] = React.useState(false);
+            const [currentPage, setCurrentPage] = React.useState('home');
+            const [copied, setCopied] = React.useState(false);
+
+            // Creative Intelligence Lab Brand Colors
+            const colors = {
+                darkTeal: '#004D40',
+                grayBlue: '#90A4AE',
+                cyan: '#00BCD4',
+                navy: '#1a1a2e',
+                oliveGreen: '#5a6f65',
+                darkerTeal: '#00202c',
+                lightGray: '#f8fafc',
+                midGray: '#e2e8f0'
+            };
+
+            // Theme classes with brand colors
+            const bgClass = darkMode ? 'bg-[#1a1a2e]' : 'bg-gray-50';
+            const textClass = darkMode ? 'text-gray-100' : 'text-[#1a1a2e]';
+            const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';
+            const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';
+            const accentColor = '#00BCD4';
+
+            // Navigation
+            const navigateTo = (page) => {
+                setCurrentPage(page);
+                window.scrollTo(0, 0);
+            };
+
+            const toggleDarkMode = () => setDarkMode(!darkMode);
+
+            // Content sections
+            const sections = [
+                {
+                    id: 'basics',
+                    title: 'The Fundamentals',
+                    icon: <Brain className="w-6 h-6" />,
+                    description: 'Master the building blocks of effective prompts',
+                    color: colors.darkTeal
+                },
+                {
+                    id: 'builder',
+                    title: 'Prompt Lab',
+                    icon: <Network className="w-6 h-6" />,
+                    description: 'Experiment and create prompts in real-time',
+                    color: colors.cyan
+                },
+                {
+                    id: 'techniques',
+                    title: 'Advanced Methods',
+                    icon: <Zap className="w-6 h-6" />,
+                    description: 'Apply sophisticated techniques for complex tasks',
+                    color: colors.oliveGreen
+                }
+            ];
+
+            // Render different pages
+            const renderPage = () => {
+                switch (currentPage) {
+                    case 'home':
+                        return <HomePage darkMode={darkMode} navigateTo={navigateTo} sections={sections} colors={colors} />;
+                    case 'basics':
+                        return <BasicsPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                    case 'builder':
+                        return <BuilderPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                    case 'techniques':
+                        return <TechniquesPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                    default:
+                        return <HomePage darkMode={darkMode} navigateTo={navigateTo} sections={sections} colors={colors} />;
+                }
+            };
+
+            return (
+                <div className={`min-h-screen ${bgClass} ${textClass} transition-colors duration-300`}>
+                    {/* Header */}
+                    <header className={`sticky top-0 z-50 ${cardBgClass} border-b ${borderClass} shadow-sm`}>
+                        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                {currentPage !== 'home' && (
+                                    <button 
+                                        onClick={() => navigateTo('home')}
+                                        className="p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"
+                                    >
+                                        <ArrowLeft className="w-5 h-5" />
+                                    </button>
+                                )}
+                                <h1 className="text-xl font-bold flex items-center gap-2">
+                                    <Network className="w-6 h-6" style={{ color: accentColor }} />
+                                    Prompt Engineering Guide
+                                </h1>
+                            </div>
+                            <button 
+                                onClick={toggleDarkMode}
+                                className="p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"
+                            >
+                                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                            </button>
+                        </div>
+                    </header>
+
+                    {/* Main Content */}
+                    <main className="max-w-6xl mx-auto px-4 py-8">
+                        {renderPage()}
+                    </main>
+                </div>
+            );
+        };
+
+        // Home Page Component
+        const HomePage = ({ darkMode, navigateTo, sections, colors }) => {
+            const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';
+            const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';
+
+            return (
+                <div className="space-y-8">
+                    {/* Hero Section */}
+                    <div className="text-center max-w-3xl mx-auto">
+                        <div className="flex justify-center mb-4">
+                            <div className="relative">
+                                <Sparkles className="w-16 h-16" style={{ color: colors.cyan }} />
+                                <div className="absolute inset-0 animate-pulse opacity-50">
+                                    <Sparkles className="w-16 h-16" style={{ color: colors.grayBlue }} />
+                                </div>
+                            </div>
+                        </div>
+                        <h1 className="text-4xl font-bold mb-4">Master Prompt Engineering</h1>
+                        <p className="text-xl opacity-80 mb-6">
+                            Transform your AI interactions with precise, creative prompts
+                        </p>
+                        <p className="text-lg opacity-60">
+                            From Creative Intelligence Lab - Learn the fundamentals, practice in our lab, and master advanced techniques
+                        </p>
+                    </div>
+
+                    {/* Key Insight */}
+                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6 max-w-3xl mx-auto`}>
+                        <div className="text-center">
+                            <div className="text-3xl font-bold mb-2" style={{ color: colors.cyan }}>
+                                Quality In = Quality Out
+                            </div>
+                            <p className="opacity-80">
+                                The clarity and specificity of your prompt directly determines the quality of AI responses
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Navigation Cards */}
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {sections.map((section) => (
+                            <button
+                                key={section.id}
+                                onClick={() => navigateTo(section.id)}
+                                className={`${cardBgClass} border ${borderClass} rounded-lg p-6 text-left transition-all duration-300 hover:shadow-lg group transform hover:-translate-y-1`}
+                                onMouseEnter={(e) => e.currentTarget.style.borderColor = section.color}
+                                onMouseLeave={(e) => e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue}
+                            >
+                                <div className="flex items-center gap-3 mb-3">
+                                    <div className="p-2 rounded-lg" style={{ backgroundColor: `${section.color}20`, color: section.color }}>
+                                        {section.icon}
+                                    </div>
+                                    <h3 className="text-lg font-semibold">{section.title}</h3>
+                                </div>
+                                <p className="text-sm opacity-70 mb-4">{section.description}</p>
+                                <div className="flex items-center text-sm group-hover:gap-2 transition-all" style={{ color: section.color }}>
+                                    Explore <ChevronRight className="w-4 h-4" />
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Quick Stats */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                        <div className="text-center">
+                            <div className="text-2xl font-bold" style={{ color: colors.cyan }}>21</div>
+                            <div className="text-sm opacity-60">Average words in successful prompts</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-2xl font-bold" style={{ color: colors.darkTeal }}>4</div>
+                            <div className="text-sm opacity-60">Essential components</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-2xl font-bold" style={{ color: colors.oliveGreen }}>3</div>
+                            <div className="text-sm opacity-60">Key techniques to master</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-2xl font-bold" style={{ color: colors.navy }}>∞</div>
+                            <div className="text-sm opacity-60">Possible applications</div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Basics Page Component
+        const BasicsPage = ({ darkMode, navigateTo, colors }) => {
+            const [activeComponent, setActiveComponent] = React.useState('task');
+            const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';
+            const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';
+
+            const components = {
+                task: {
+                    title: 'Task',
+                    description: 'The specific action you want the AI to perform',
+                    example: 'Generate a professional email response',
+                    tip: 'Start with action verbs like "Generate", "Write", "Analyze"',
+                    color: colors.cyan
+                },
+                context: {
+                    title: 'Context',
+                    description: 'Background information that helps AI understand your needs',
+                    example: 'For a customer complaint about delayed shipping',
+                    tip: 'Include audience, purpose, and any constraints',
+                    color: colors.darkTeal
+                },
+                examples: {
+                    title: 'Examples',
+                    description: 'References that show the desired output style',
+                    example: 'Following this email template: [sample]',
+                    tip: 'Show, don\'t just tell - provide samples when possible',
+                    color: colors.oliveGreen
+                },
+                format: {
+                    title: 'Format',
+                    description: 'How you want the output structured',
+                    example: 'As a 2-paragraph email with subject line',
+                    tip: 'Specify structure, length, and any special requirements',
+                    color: colors.navy
+                }
+            };
+
+            return (
+                <div className="space-y-8">
+                    <div className="max-w-3xl">
+                        <h1 className="text-3xl font-bold mb-4">The Anatomy of a Great Prompt</h1>
+                        <p className="text-lg opacity-80">
+                            Every effective prompt contains these four essential components. Click each to learn more.
+                        </p>
+                    </div>
+
+                    {/* Interactive Component Selector */}
+                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                            {Object.entries(components).map(([key, component]) => (
+                                <button
+                                    key={key}
+                                    onClick={() => setActiveComponent(key)}
+                                    className={`p-4 rounded border transition-all ${
+                                        activeComponent === key 
+                                            ? 'border-opacity-100 shadow-md' 
+                                            : 'border-opacity-40 hover:border-opacity-70'
+                                    }`}
+                                    style={{
+                                        borderColor: component.color,
+                                        backgroundColor: activeComponent === key ? `${component.color}10` : 'transparent'
+                                    }}
+                                >
+                                    <div className="text-center">
+                                        <div className="font-medium" style={{ color: activeComponent === key ? component.color : undefined }}>
+                                            {component.title}
+                                        </div>
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="rounded p-6" style={{ backgroundColor: darkMode ? '#00202c' : '#f8fafc' }}>
+                            <h3 className="text-lg font-semibold mb-2" style={{ color: components[activeComponent].color }}>
+                                {components[activeComponent].title}
+                            </h3>
+                            <p className="mb-3 opacity-80">{components[activeComponent].description}</p>
+                            <div className="mb-3">
+                                <strong className="text-sm">Example:</strong>
+                                <div className={`${cardBgClass} border rounded p-2 mt-1 text-sm`} style={{ borderColor: colors.grayBlue }}>
+                                    {components[activeComponent].example}
+                                </div>
+                            </div>
+                            <div className="text-sm">
+                                <strong>Pro Tip:</strong> {components[activeComponent].tip}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Example Prompt */}
+                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
+                        <h3 className="font-semibold mb-4">Complete Example</h3>
+                        <div className="font-mono text-sm rounded p-4 leading-6" style={{ backgroundColor: darkMode ? '#00202c' : '#f8fafc' }}>
+                            <span style={{ color: colors.cyan }}>[Generate a professional email response]</span>{' '}
+                            <span style={{ color: colors.darkTeal }}>for a customer complaint about delayed shipping</span>{' '}
+                            <span style={{ color: colors.oliveGreen }}>following the company's empathetic but professional tone</span>{' '}
+                            <span style={{ color: colors.navy }}>formatted as a 2-paragraph email with subject line</span>
+                        </div>
+                    </div>
+
+                    {/* Best Practices */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
+                            <h3 className="font-semibold mb-4" style={{ color: colors.darkTeal }}>✅ Do</h3>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} />
+                                    Be specific and clear
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} />
+                                    Provide relevant context
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} />
+                                    Use action verbs
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} />
+                                    Include examples when helpful
+                                </li>
+                            </ul>
+                        </div>
+                        <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
+                            <h3 className="font-semibold mb-4" style={{ color: colors.oliveGreen }}>❌ Don't</h3>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-start gap-2">
+                                    <div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}>✗</div>
+                                    Use vague language
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}>✗</div>
+                                    Make assumptions
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}>✗</div>
+                                    Overload with information
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}>✗</div>
+                                    Forget to specify format
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Builder Page Component
+        const BuilderPage = ({ darkMode, navigateTo, colors }) => {
+            const [prompt, setPrompt] = React.useState({
+                task: '',
+                context: '',
+                examples: '',
+                format: ''
+            });
+            const [generatedPrompt, setGeneratedPrompt] = React.useState('');
+            const [copied, setCopied] = React.useState(false);
+            
+            const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';
+            const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';
+
+            const buildPrompt = () => {
+                const parts = [];
+                if (prompt.task) parts.push(prompt.task);
+                if (prompt.context) parts.push(prompt.context);
+                if (prompt.examples) parts.push(prompt.examples);
+                if (prompt.format) parts.push(`Format: ${prompt.format}`);
+                
+                setGeneratedPrompt(parts.join(' '));
+            };
+
+            const copyPrompt = async () => {
+                if (generatedPrompt) {
+                    await navigator.clipboard.writeText(generatedPrompt);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                }
+            };
+
+            const loadTemplate = (templatePrompt) => {
+                setPrompt(templatePrompt);
+                buildPrompt();
+            };
+
+            const templates = [
+                {
+                    name: 'Email Response',
+                    prompt: {
+                        task: 'Write a professional email response',
+                        context: 'to a customer inquiry about product specifications',
+                        examples: 'using a helpful and knowledgeable tone',
+                        format: '2-3 paragraphs with greeting and signature'
+                    }
+                },
+                {
+                    name: 'Content Creation',
+                    prompt: {
+                        task: 'Create a social media post',
+                        context: 'announcing a new product launch for tech enthusiasts',
+                        examples: 'in the style of engaging tech brands',
+                        format: 'under 280 characters with relevant hashtags'
+                    }
+                },
+                {
+                    name: 'Analysis',
+                    prompt: {
+                        task: 'Analyze market trends',
+                        context: 'for renewable energy sector in 2024',
+                        examples: 'providing data-driven insights',
+                        format: 'bullet points with key findings and recommendations'
+                    }
+                }
+            ];
+
+            return (
+                <div className="space-y-8">
+                    <div className="max-w-3xl">
+                        <h1 className="text-3xl font-bold mb-4">Interactive Prompt Lab</h1>
+                        <p className="text-lg opacity-80">
+                            Experiment and create perfect prompts step by step. Use our templates or build from scratch.
+                        </p>
+                    </div>
+
+                    {/* Quick Templates */}
+                    <div>
+                        <h3 className="font-semibold mb-4">Quick Start Templates</h3>
+                        <div className="grid md:grid-cols-3 gap-4">
+                            {templates.map((template) => (
+                                <button
+                                    key={template.name}
+                                    onClick={() => loadTemplate(template.prompt)}
+                                    className={`${cardBgClass} border ${borderClass} rounded p-4 text-left transition-all hover:shadow-md`}
+                                    onMouseEnter={(e) => e.currentTarget.style.borderColor = colors.cyan}
+                                    onMouseLeave={(e) => e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue}
+                                >
+                                    <div className="font-medium">{template.name}</div>
+                                    <div className="text-xs mt-1" style={{ color: colors.cyan }}>Load Template</div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Builder Form */}
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
+                            <h3 className="font-semibold mb-4">Build Your Prompt</h3>
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">
+                                        Task <span style={{ color: colors.cyan }}>*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={prompt.task}
+                                        onChange={(e) => setPrompt({...prompt, task: e.target.value})}
+                                        placeholder="What do you want the AI to do?"
+                                        className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"
+                                        style={{ 
+                                            borderColor: colors.grayBlue,
+                                            backgroundColor: darkMode ? '#00202c' : '#ffffff'
+                                        }}
+                                        onFocus={(e) => e.target.style.borderColor = colors.cyan}
+                                        onBlur={(e) => e.target.style.borderColor = colors.grayBlue}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">Context</label>
+                                    <input
+                                        type="text"
+                                        value={prompt.context}
+                                        onChange={(e) => setPrompt({...prompt, context: e.target.value})}
+                                        placeholder="Provide background information..."
+                                        className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"
+                                        style={{ 
+                                            borderColor: colors.grayBlue,
+                                            backgroundColor: darkMode ? '#00202c' : '#ffffff'
+                                        }}
+                                        onFocus={(e) => e.target.style.borderColor = colors.cyan}
+                                        onBlur={(e) => e.target.style.borderColor = colors.grayBlue}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">Examples/Style</label>
+                                    <input
+                                        type="text"
+                                        value={prompt.examples}
+                                        onChange={(e) => setPrompt({...prompt, examples: e.target.value})}
+                                        placeholder="Reference style or tone..."
+                                        className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"
+                                        style={{ 
+                                            borderColor: colors.grayBlue,
+                                            backgroundColor: darkMode ? '#00202c' : '#ffffff'
+                                        }}
+                                        onFocus={(e) => e.target.style.borderColor = colors.cyan}
+                                        onBlur={(e) => e.target.style.borderColor = colors.grayBlue}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">Format</label>
+                                    <input
+                                        type="text"
+                                        value={prompt.format}
+                                        onChange={(e) => setPrompt({...prompt, format: e.target.value})}
+                                        placeholder="How should it be structured?"
+                                        className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"
+                                        style={{ 
+                                            borderColor: colors.grayBlue,
+                                            backgroundColor: darkMode ? '#00202c' : '#ffffff'
+                                        }}
+                                        onFocus={(e) => e.target.style.borderColor = colors.cyan}
+                                        onBlur={(e) => e.target.style.borderColor = colors.grayBlue}
+                                    />
+                                </div>
+
+                                <button
+                                    onClick={buildPrompt}
+                                    className="w-full text-white py-3 px-4 rounded transition-all hover:opacity-90 font-medium"
+                                    style={{ backgroundColor: colors.cyan }}
+                                >
+                                    Generate Prompt
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="font-semibold">Generated Prompt</h3>
+                                <button
+                                    onClick={copyPrompt}
+                                    disabled={!generatedPrompt}
+                                    className="p-2 rounded transition-colors hover:opacity-80"
+                                    style={{ color: colors.cyan }}
+                                >
+                                    {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                                </button>
+                            </div>
+                            
+                            <div className="min-h-[200px] p-4 rounded border" style={{ 
+                                backgroundColor: darkMode ? '#00202c' : '#f8fafc',
+                                borderColor: colors.grayBlue
+                            }}>
+                                {generatedPrompt || (
+                                    <div className="text-center pt-16" style={{ color: colors.grayBlue }}>
+                                        Your generated prompt will appear here...
+                                    </div>
+                                )}
+                            </div>
+
+                            {generatedPrompt && (
+                                <div className="mt-4 text-sm" style={{ color: colors.cyan }}>
+                                    Word count: {generatedPrompt.split(' ').length}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Techniques Page Component
+        const TechniquesPage = ({ darkMode, navigateTo, colors }) => {
+            const [activeTechnique, setActiveTechnique] = React.useState('chain-of-thought');
+            const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';
+            const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';
+
+            const techniques = {
+                'chain-of-thought': {
+                    title: 'Chain of Thought',
+                    description: 'Guide AI through step-by-step reasoning',
+                    example: `Let's think step by step:
+1. First, identify the problem
+2. Break it into smaller parts
+3. Solve each part
+4. Combine for the final answer`,
+                    bestFor: ['Math problems', 'Logic puzzles', 'Complex analysis'],
+                    color: colors.cyan
+                },
+                'few-shot': {
+                    title: 'Few-Shot Learning',
+                    description: 'Provide examples to establish patterns',
+                    example: `Translate English to French:
+English: "Hello" → French: "Bonjour"
+English: "Thank you" → French: "Merci"
+English: "Goodbye" → French: ???`,
+                    bestFor: ['Pattern recognition', 'Style consistency', 'Format matching'],
+                    color: colors.darkTeal
+                },
+                'role-playing': {
+                    title: 'Role-Based Prompting',
+                    description: 'Assign specific expertise to the AI',
+                    example: `Act as a professional nutritionist.
+Provide a meal plan for someone looking to build muscle.
+Consider dietary restrictions and calorie requirements.`,
+                    bestFor: ['Expert advice', 'Specialized knowledge', 'Consistent perspective'],
+                    color: colors.oliveGreen
+                }
+            };
+
+            return (
+                <div className="space-y-8">
+                    <div className="max-w-3xl">
+                        <h1 className="text-3xl font-bold mb-4">Advanced Techniques</h1>
+                        <p className="text-lg opacity-80">
+                            Master these three core techniques to dramatically improve your AI interactions.
+                        </p>
+                    </div>
+
+                    {/* Technique Selection */}
+                    <div className="flex flex-wrap gap-4">
+                        {Object.entries(techniques).map(([key, technique]) => (
+                            <button
+                                key={key}
+                                onClick={() => setActiveTechnique(key)}
+                                className={`px-4 py-2 rounded transition-all ${
+                                    activeTechnique === key 
+                                        ? 'text-white shadow-md' 
+                                        : `${cardBgClass} border ${borderClass}`
+                                }`}
+                                style={{
+                                    backgroundColor: activeTechnique === key ? technique.color : undefined,
+                                    borderColor: activeTechnique === key ? technique.color : undefined
+                                }}
+                            >
+                                {technique.title}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Technique Details */}
+                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
+                        <h2 className="text-xl font-semibold mb-3" style={{ color: techniques[activeTechnique].color }}>
+                            {techniques[activeTechnique].title}
+                        </h2>
+                        <p className="text-lg opacity-80 mb-6">{techniques[activeTechnique].description}</p>
+                        
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="font-medium mb-2">Example:</h3>
+                                <pre className="rounded p-4 text-sm overflow-x-auto whitespace-pre-wrap" style={{ 
+                                    backgroundColor: darkMode ? '#00202c' : '#f8fafc',
+                                    border: `1px solid ${colors.grayBlue}`
+                                }}>
+                                    {techniques[activeTechnique].example}
+                                </pre>
+                            </div>
+
+                            <div>
+                                <h3 className="font-medium mb-2">Best For:</h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {techniques[activeTechnique].bestFor.map((use, index) => (
+                                        <span 
+                                            key={index} 
+                                            className="px-3 py-1 rounded-full text-sm"
+                                            style={{ 
+                                                backgroundColor: `${techniques[activeTechnique].color}20`,
+                                                color: techniques[activeTechnique].color
+                                            }}
+                                        >
+                                            {use}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Practice Exercise */}
+                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
+                        <h3 className="font-semibold mb-4">Practice Exercise</h3>
+                        <div className="rounded p-4" style={{ backgroundColor: `${colors.cyan}10` }}>
+                            <p className="font-medium mb-2">Try it yourself:</p>
+                            <p className="text-sm opacity-80">
+                                {activeTechnique === 'chain-of-thought' && "Ask AI to solve: 'If a train travels 60 mph for 2.5 hours, how far does it go?' Use step-by-step thinking."}
+                                {activeTechnique === 'few-shot' && "Create a few-shot prompt for converting temperatures from Celsius to Fahrenheit."}
+                                {activeTechnique === 'role-playing' && "Ask AI to act as a financial advisor and explain cryptocurrency basics."}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Summary */}
+                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6 text-center`}>
+                        <h3 className="font-semibold mb-2">Remember</h3>
+                        <p className="opacity-80">
+                            These techniques can be combined for even better results. Mix and match based on your specific needs.
+                        </p>
+                    </div>
+                </div>
+            );
+        };
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PromptEngineeringGuide />);
+    </script>
 </body>
 </html>
