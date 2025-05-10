@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Engineering Guide - Creative Intelligence Lab</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        body { margin: 0; }
+        [data-id="root"] { min-height: 100vh; }
+    </style>
 </head>
 <body>
     <div id="root"></div>
@@ -69,21 +73,21 @@
                 {
                     id: 'basics',
                     title: 'The Fundamentals',
-                    icon: <Brain className="w-6 h-6" />,
+                    icon: React.createElement(Brain, {className: "w-6 h-6"}),
                     description: 'Master the building blocks of effective prompts',
                     color: colors.darkTeal
                 },
                 {
                     id: 'builder',
                     title: 'Prompt Lab',
-                    icon: <Network className="w-6 h-6" />,
+                    icon: React.createElement(Network, {className: "w-6 h-6"}),
                     description: 'Experiment and create prompts in real-time',
                     color: colors.cyan
                 },
                 {
                     id: 'techniques',
                     title: 'Advanced Methods',
-                    icon: <Zap className="w-6 h-6" />,
+                    icon: React.createElement(Zap, {className: "w-6 h-6"}),
                     description: 'Apply sophisticated techniques for complex tasks',
                     color: colors.oliveGreen
                 }
@@ -93,51 +97,46 @@
             const renderPage = () => {
                 switch (currentPage) {
                     case 'home':
-                        return <HomePage darkMode={darkMode} navigateTo={navigateTo} sections={sections} colors={colors} />;
+                        return React.createElement(HomePage, {darkMode, navigateTo, sections, colors});
                     case 'basics':
-                        return <BasicsPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                        return React.createElement(BasicsPage, {darkMode, navigateTo, colors});
                     case 'builder':
-                        return <BuilderPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                        return React.createElement(BuilderPage, {darkMode, navigateTo, colors});
                     case 'techniques':
-                        return <TechniquesPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                        return React.createElement(TechniquesPage, {darkMode, navigateTo, colors});
                     default:
-                        return <HomePage darkMode={darkMode} navigateTo={navigateTo} sections={sections} colors={colors} />;
+                        return React.createElement(HomePage, {darkMode, navigateTo, sections, colors});
                 }
             };
 
-            return (
-                <div className={`min-h-screen ${bgClass} ${textClass} transition-colors duration-300`}>
-                    {/* Header */}
-                    <header className={`sticky top-0 z-50 ${cardBgClass} border-b ${borderClass} shadow-sm`}>
-                        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                                {currentPage !== 'home' && (
-                                    <button 
-                                        onClick={() => navigateTo('home')}
-                                        className="p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"
-                                    >
-                                        <ArrowLeft className="w-5 h-5" />
-                                    </button>
-                                )}
-                                <h1 className="text-xl font-bold flex items-center gap-2">
-                                    <Network className="w-6 h-6" style={{ color: accentColor }} />
-                                    Prompt Engineering Guide
-                                </h1>
-                            </div>
-                            <button 
-                                onClick={toggleDarkMode}
-                                className="p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"
-                            >
-                                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                            </button>
-                        </div>
-                    </header>
-
-                    {/* Main Content */}
-                    <main className="max-w-6xl mx-auto px-4 py-8">
-                        {renderPage()}
-                    </main>
-                </div>
+            return React.createElement('div', {className: `min-h-screen ${bgClass} ${textClass} transition-colors duration-300`},
+                // Header
+                React.createElement('header', {className: `sticky top-0 z-50 ${cardBgClass} border-b ${borderClass} shadow-sm`},
+                    React.createElement('div', {className: "max-w-6xl mx-auto px-4 py-4 flex items-center justify-between"},
+                        React.createElement('div', {className: "flex items-center gap-2"},
+                            currentPage !== 'home' && React.createElement('button', {
+                                onClick: () => navigateTo('home'),
+                                className: "p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"
+                            },
+                                React.createElement(ArrowLeft, {className: "w-5 h-5"})
+                            ),
+                            React.createElement('h1', {className: "text-xl font-bold flex items-center gap-2"},
+                                React.createElement(Network, {className: "w-6 h-6", style: {color: accentColor}}),
+                                'Prompt Engineering Guide'
+                            )
+                        ),
+                        React.createElement('button', {
+                            onClick: toggleDarkMode,
+                            className: "p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"
+                        },
+                            darkMode ? React.createElement(Sun, {className: "w-5 h-5"}) : React.createElement(Moon, {className: "w-5 h-5"})
+                        )
+                    )
+                ),
+                // Main Content
+                React.createElement('main', {className: "max-w-6xl mx-auto px-4 py-8"},
+                    renderPage()
+                )
             );
         };
 
@@ -146,83 +145,82 @@
             const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';
             const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';
 
-            return (
-                <div className="space-y-8">
-                    {/* Hero Section */}
-                    <div className="text-center max-w-3xl mx-auto">
-                        <div className="flex justify-center mb-4">
-                            <div className="relative">
-                                <Sparkles className="w-16 h-16" style={{ color: colors.cyan }} />
-                                <div className="absolute inset-0 animate-pulse opacity-50">
-                                    <Sparkles className="w-16 h-16" style={{ color: colors.grayBlue }} />
-                                </div>
-                            </div>
-                        </div>
-                        <h1 className="text-4xl font-bold mb-4">Master Prompt Engineering</h1>
-                        <p className="text-xl opacity-80 mb-6">
-                            Transform your AI interactions with precise, creative prompts
-                        </p>
-                        <p className="text-lg opacity-60">
-                            From Creative Intelligence Lab - Learn the fundamentals, practice in our lab, and master advanced techniques
-                        </p>
-                    </div>
+            return React.createElement('div', {className: "space-y-8"},
+                // Hero Section
+                React.createElement('div', {className: "text-center max-w-3xl mx-auto"},
+                    React.createElement('div', {className: "flex justify-center mb-4"},
+                        React.createElement('div', {className: "relative"},
+                            React.createElement(Sparkles, {className: "w-16 h-16", style: {color: colors.cyan}}),
+                            React.createElement('div', {className: "absolute inset-0 animate-pulse opacity-50"},
+                                React.createElement(Sparkles, {className: "w-16 h-16", style: {color: colors.grayBlue}})
+                            )
+                        )
+                    ),
+                    React.createElement('h1', {className: "text-4xl font-bold mb-4"}, 'Master Prompt Engineering'),
+                    React.createElement('p', {className: "text-xl opacity-80 mb-6"},
+                        'Transform your AI interactions with precise, creative prompts'
+                    ),
+                    React.createElement('p', {className: "text-lg opacity-60"},
+                        'From Creative Intelligence Lab - Learn the fundamentals, practice in our lab, and master advanced techniques'
+                    )
+                ),
 
-                    {/* Key Insight */}
-                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6 max-w-3xl mx-auto`}>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold mb-2" style={{ color: colors.cyan }}>
-                                Quality In = Quality Out
-                            </div>
-                            <p className="opacity-80">
-                                The clarity and specificity of your prompt directly determines the quality of AI responses
-                            </p>
-                        </div>
-                    </div>
+                // Key Insight
+                React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6 max-w-3xl mx-auto`},
+                    React.createElement('div', {className: "text-center"},
+                        React.createElement('div', {className: "text-3xl font-bold mb-2", style: {color: colors.cyan}},
+                            'Quality In = Quality Out'
+                        ),
+                        React.createElement('p', {className: "opacity-80"},
+                            'The clarity and specificity of your prompt directly determines the quality of AI responses'
+                        )
+                    )
+                ),
 
-                    {/* Navigation Cards */}
-                    <div className="grid md:grid-cols-3 gap-6">
-                        {sections.map((section) => (
-                            <button
-                                key={section.id}
-                                onClick={() => navigateTo(section.id)}
-                                className={`${cardBgClass} border ${borderClass} rounded-lg p-6 text-left transition-all duration-300 hover:shadow-lg group transform hover:-translate-y-1`}
-                                onMouseEnter={(e) => e.currentTarget.style.borderColor = section.color}
-                                onMouseLeave={(e) => e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue}
-                            >
-                                <div className="flex items-center gap-3 mb-3">
-                                    <div className="p-2 rounded-lg" style={{ backgroundColor: `${section.color}20`, color: section.color }}>
-                                        {section.icon}
-                                    </div>
-                                    <h3 className="text-lg font-semibold">{section.title}</h3>
-                                </div>
-                                <p className="text-sm opacity-70 mb-4">{section.description}</p>
-                                <div className="flex items-center text-sm group-hover:gap-2 transition-all" style={{ color: section.color }}>
-                                    Explore <ChevronRight className="w-4 h-4" />
-                                </div>
-                            </button>
-                        ))}
-                    </div>
+                // Navigation Cards
+                React.createElement('div', {className: "grid md:grid-cols-3 gap-6"},
+                    sections.map((section) => 
+                        React.createElement('button', {
+                            key: section.id,
+                            onClick: () => navigateTo(section.id),
+                            className: `${cardBgClass} border ${borderClass} rounded-lg p-6 text-left transition-all duration-300 hover:shadow-lg group transform hover:-translate-y-1`,
+                            onMouseEnter: (e) => e.currentTarget.style.borderColor = section.color,
+                            onMouseLeave: (e) => e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue
+                        },
+                            React.createElement('div', {className: "flex items-center gap-3 mb-3"},
+                                React.createElement('div', {className: "p-2 rounded-lg", style: {backgroundColor: `${section.color}20`, color: section.color}},
+                                    section.icon
+                                ),
+                                React.createElement('h3', {className: "text-lg font-semibold"}, section.title)
+                            ),
+                            React.createElement('p', {className: "text-sm opacity-70 mb-4"}, section.description),
+                            React.createElement('div', {className: "flex items-center text-sm group-hover:gap-2 transition-all", style: {color: section.color}},
+                                'Explore ',
+                                React.createElement(ChevronRight, {className: "w-4 h-4"})
+                            )
+                        )
+                    )
+                ),
 
-                    {/* Quick Stats */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                        <div className="text-center">
-                            <div className="text-2xl font-bold" style={{ color: colors.cyan }}>21</div>
-                            <div className="text-sm opacity-60">Average words in successful prompts</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl font-bold" style={{ color: colors.darkTeal }}>4</div>
-                            <div className="text-sm opacity-60">Essential components</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl font-bold" style={{ color: colors.oliveGreen }}>3</div>
-                            <div className="text-sm opacity-60">Key techniques to master</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl font-bold" style={{ color: colors.navy }}>∞</div>
-                            <div className="text-sm opacity-60">Possible applications</div>
-                        </div>
-                    </div>
-                </div>
+                // Quick Stats
+                React.createElement('div', {className: "grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"},
+                    React.createElement('div', {className: "text-center"},
+                        React.createElement('div', {className: "text-2xl font-bold", style: {color: colors.cyan}}, '21'),
+                        React.createElement('div', {className: "text-sm opacity-60"}, 'Average words in successful prompts')
+                    ),
+                    React.createElement('div', {className: "text-center"},
+                        React.createElement('div', {className: "text-2xl font-bold", style: {color: colors.darkTeal}}, '4'),
+                        React.createElement('div', {className: "text-sm opacity-60"}, 'Essential components')
+                    ),
+                    React.createElement('div', {className: "text-center"},
+                        React.createElement('div', {className: "text-2xl font-bold", style: {color: colors.oliveGreen}}, '3'),
+                        React.createElement('div', {className: "text-sm opacity-60"}, 'Key techniques to master')
+                    ),
+                    React.createElement('div', {className: "text-center"},
+                        React.createElement('div', {className: "text-2xl font-bold", style: {color: colors.navy}}, '∞'),
+                        React.createElement('div', {className: "text-sm opacity-60"}, 'Possible applications')
+                    )
+                )
             );
         };
 
@@ -263,115 +261,106 @@
                 }
             };
 
-            return (
-                <div className="space-y-8">
-                    <div className="max-w-3xl">
-                        <h1 className="text-3xl font-bold mb-4">The Anatomy of a Great Prompt</h1>
-                        <p className="text-lg opacity-80">
-                            Every effective prompt contains these four essential components. Click each to learn more.
-                        </p>
-                    </div>
+            return React.createElement('div', {className: "space-y-8"},
+                React.createElement('div', {className: "max-w-3xl"},
+                    React.createElement('h1', {className: "text-3xl font-bold mb-4"}, 'The Anatomy of a Great Prompt'),
+                    React.createElement('p', {className: "text-lg opacity-80"},
+                        'Every effective prompt contains these four essential components. Click each to learn more.'
+                    )
+                ),
 
-                    {/* Interactive Component Selector */}
-                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                            {Object.entries(components).map(([key, component]) => (
-                                <button
-                                    key={key}
-                                    onClick={() => setActiveComponent(key)}
-                                    className={`p-4 rounded border transition-all ${
-                                        activeComponent === key 
-                                            ? 'border-opacity-100 shadow-md' 
-                                            : 'border-opacity-40 hover:border-opacity-70'
-                                    }`}
-                                    style={{
-                                        borderColor: component.color,
-                                        backgroundColor: activeComponent === key ? `${component.color}10` : 'transparent'
-                                    }}
-                                >
-                                    <div className="text-center">
-                                        <div className="font-medium" style={{ color: activeComponent === key ? component.color : undefined }}>
-                                            {component.title}
-                                        </div>
-                                    </div>
-                                </button>
-                            ))}
-                        </div>
+                // Interactive Component Selector
+                React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6`},
+                    React.createElement('div', {className: "grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"},
+                        Object.entries(components).map(([key, component]) =>
+                            React.createElement('button', {
+                                key: key,
+                                onClick: () => setActiveComponent(key),
+                                className: `p-4 rounded border transition-all ${
+                                    activeComponent === key 
+                                        ? 'border-opacity-100 shadow-md' 
+                                        : 'border-opacity-40 hover:border-opacity-70'
+                                }`,
+                                style: {
+                                    borderColor: component.color,
+                                    backgroundColor: activeComponent === key ? `${component.color}10` : 'transparent'
+                                }
+                            },
+                                React.createElement('div', {className: "text-center"},
+                                    React.createElement('div', {className: "font-medium", style: {color: activeComponent === key ? component.color : undefined}},
+                                        component.title
+                                    )
+                                )
+                            )
+                        )
+                    ),
 
-                        <div className="rounded p-6" style={{ backgroundColor: darkMode ? '#00202c' : '#f8fafc' }}>
-                            <h3 className="text-lg font-semibold mb-2" style={{ color: components[activeComponent].color }}>
-                                {components[activeComponent].title}
-                            </h3>
-                            <p className="mb-3 opacity-80">{components[activeComponent].description}</p>
-                            <div className="mb-3">
-                                <strong className="text-sm">Example:</strong>
-                                <div className={`${cardBgClass} border rounded p-2 mt-1 text-sm`} style={{ borderColor: colors.grayBlue }}>
-                                    {components[activeComponent].example}
-                                </div>
-                            </div>
-                            <div className="text-sm">
-                                <strong>Pro Tip:</strong> {components[activeComponent].tip}
-                            </div>
-                        </div>
-                    </div>
+                    React.createElement('div', {className: "rounded p-6", style: {backgroundColor: darkMode ? '#00202c' : '#f8fafc'}},
+                        React.createElement('h3', {className: "text-lg font-semibold mb-2", style: {color: components[activeComponent].color}},
+                            components[activeComponent].title
+                        ),
+                        React.createElement('p', {className: "mb-3 opacity-80"}, components[activeComponent].description),
+                        React.createElement('div', {className: "mb-3"},
+                            React.createElement('strong', {className: "text-sm"}, 'Example:'),
+                            React.createElement('div', {className: `${cardBgClass} border rounded p-2 mt-1 text-sm`, style: {borderColor: colors.grayBlue}},
+                                components[activeComponent].example
+                            )
+                        ),
+                        React.createElement('div', {className: "text-sm"},
+                            React.createElement('strong', {}, 'Pro Tip: '), components[activeComponent].tip
+                        )
+                    )
+                ),
 
-                    {/* Example Prompt */}
-                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
-                        <h3 className="font-semibold mb-4">Complete Example</h3>
-                        <div className="font-mono text-sm rounded p-4 leading-6" style={{ backgroundColor: darkMode ? '#00202c' : '#f8fafc' }}>
-                            <span style={{ color: colors.cyan }}>[Generate a professional email response]</span>{' '}
-                            <span style={{ color: colors.darkTeal }}>for a customer complaint about delayed shipping</span>{' '}
-                            <span style={{ color: colors.oliveGreen }}>following the company's empathetic but professional tone</span>{' '}
-                            <span style={{ color: colors.navy }}>formatted as a 2-paragraph email with subject line</span>
-                        </div>
-                    </div>
+                // Example Prompt
+                React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6`},
+                    React.createElement('h3', {className: "font-semibold mb-4"}, 'Complete Example'),
+                    React.createElement('div', {className: "font-mono text-sm rounded p-4 leading-6", style: {backgroundColor: darkMode ? '#00202c' : '#f8fafc'}},
+                        React.createElement('span', {style: {color: colors.cyan}}, '[Generate a professional email response]'),
+                        ' ',
+                        React.createElement('span', {style: {color: colors.darkTeal}}, 'for a customer complaint about delayed shipping'),
+                        ' ',
+                        React.createElement('span', {style: {color: colors.oliveGreen}}, 'following the company\'s empathetic but professional tone'),
+                        ' ',
+                        React.createElement('span', {style: {color: colors.navy}}, 'formatted as a 2-paragraph email with subject line')
+                    )
+                ),
 
-                    {/* Best Practices */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
-                            <h3 className="font-semibold mb-4" style={{ color: colors.darkTeal }}>✅ Do</h3>
-                            <ul className="space-y-2 text-sm">
-                                <li className="flex items-start gap-2">
-                                    <Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} />
-                                    Be specific and clear
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} />
-                                    Provide relevant context
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} />
-                                    Use action verbs
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <Check className="w-4 h-4 mt-0.5" style={{ color: colors.darkTeal }} />
-                                    Include examples when helpful
-                                </li>
-                            </ul>
-                        </div>
-                        <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
-                            <h3 className="font-semibold mb-4" style={{ color: colors.oliveGreen }}>❌ Don't</h3>
-                            <ul className="space-y-2 text-sm">
-                                <li className="flex items-start gap-2">
-                                    <div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}>✗</div>
-                                    Use vague language
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}>✗</div>
-                                    Make assumptions
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}>✗</div>
-                                    Overload with information
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <div className="w-4 h-4 mt-0.5" style={{ color: colors.oliveGreen }}>✗</div>
-                                    Forget to specify format
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                // Best Practices
+                React.createElement('div', {className: "grid md:grid-cols-2 gap-6"},
+                    React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6`},
+                        React.createElement('h3', {className: "font-semibold mb-4", style: {color: colors.darkTeal}}, '✅ Do'),
+                        React.createElement('ul', {className: "space-y-2 text-sm"},
+                            [
+                                'Be specific and clear',
+                                'Provide relevant context',
+                                'Use action verbs',
+                                'Include examples when helpful'
+                            ].map((item, index) =>
+                                React.createElement('li', {key: index, className: "flex items-start gap-2"},
+                                    React.createElement(Check, {className: "w-4 h-4 mt-0.5", style: {color: colors.darkTeal}}),
+                                    item
+                                )
+                            )
+                        )
+                    ),
+                    React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6`},
+                        React.createElement('h3', {className: "font-semibold mb-4", style: {color: colors.oliveGreen}}, '❌ Don\'t'),
+                        React.createElement('ul', {className: "space-y-2 text-sm"},
+                            [
+                                'Use vague language',
+                                'Make assumptions',
+                                'Overload with information',
+                                'Forget to specify format'
+                            ].map((item, index) =>
+                                React.createElement('li', {key: index, className: "flex items-start gap-2"},
+                                    React.createElement('div', {className: "w-4 h-4 mt-0.5", style: {color: colors.oliveGreen}}, '✗'),
+                                    item
+                                )
+                            )
+                        )
+                    )
+                )
             );
         };
 
@@ -407,11 +396,6 @@
                 }
             };
 
-            const loadTemplate = (templatePrompt) => {
-                setPrompt(templatePrompt);
-                buildPrompt();
-            };
-
             const templates = [
                 {
                     name: 'Email Response',
@@ -442,151 +426,102 @@
                 }
             ];
 
-            return (
-                <div className="space-y-8">
-                    <div className="max-w-3xl">
-                        <h1 className="text-3xl font-bold mb-4">Interactive Prompt Lab</h1>
-                        <p className="text-lg opacity-80">
-                            Experiment and create perfect prompts step by step. Use our templates or build from scratch.
-                        </p>
-                    </div>
+            return React.createElement('div', {className: "space-y-8"},
+                React.createElement('div', {className: "max-w-3xl"},
+                    React.createElement('h1', {className: "text-3xl font-bold mb-4"}, 'Interactive Prompt Lab'),
+                    React.createElement('p', {className: "text-lg opacity-80"},
+                        'Experiment and create perfect prompts step by step. Use our templates or build from scratch.'
+                    )
+                ),
 
-                    {/* Quick Templates */}
-                    <div>
-                        <h3 className="font-semibold mb-4">Quick Start Templates</h3>
-                        <div className="grid md:grid-cols-3 gap-4">
-                            {templates.map((template) => (
-                                <button
-                                    key={template.name}
-                                    onClick={() => loadTemplate(template.prompt)}
-                                    className={`${cardBgClass} border ${borderClass} rounded p-4 text-left transition-all hover:shadow-md`}
-                                    onMouseEnter={(e) => e.currentTarget.style.borderColor = colors.cyan}
-                                    onMouseLeave={(e) => e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue}
-                                >
-                                    <div className="font-medium">{template.name}</div>
-                                    <div className="text-xs mt-1" style={{ color: colors.cyan }}>Load Template</div>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+                // Quick Templates
+                React.createElement('div', {},
+                    React.createElement('h3', {className: "font-semibold mb-4"}, 'Quick Start Templates'),
+                    React.createElement('div', {className: "grid md:grid-cols-3 gap-4"},
+                        templates.map((template) =>
+                            React.createElement('button', {
+                                key: template.name,
+                                onClick: () => setPrompt(template.prompt),
+                                className: `${cardBgClass} border ${borderClass} rounded p-4 text-left transition-all hover:shadow-md`,
+                                onMouseEnter: (e) => e.currentTarget.style.borderColor = colors.cyan,
+                                onMouseLeave: (e) => e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue
+                            },
+                                React.createElement('div', {className: "font-medium"}, template.name),
+                                React.createElement('div', {className: "text-xs mt-1", style: {color: colors.cyan}}, 'Load Template')
+                            )
+                        )
+                    )
+                ),
 
-                    {/* Builder Form */}
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
-                            <h3 className="font-semibold mb-4">Build Your Prompt</h3>
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">
-                                        Task <span style={{ color: colors.cyan }}>*</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={prompt.task}
-                                        onChange={(e) => setPrompt({...prompt, task: e.target.value})}
-                                        placeholder="What do you want the AI to do?"
-                                        className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"
-                                        style={{ 
+                // Builder Form
+                React.createElement('div', {className: "grid md:grid-cols-2 gap-8"},
+                    React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6`},
+                        React.createElement('h3', {className: "font-semibold mb-4"}, 'Build Your Prompt'),
+                        React.createElement('div', {className: "space-y-4"},
+                            [
+                                {key: 'task', label: 'Task', placeholder: 'What do you want the AI to do?', required: true},
+                                {key: 'context', label: 'Context', placeholder: 'Provide background information...'},
+                                {key: 'examples', label: 'Examples/Style', placeholder: 'Reference style or tone...'},
+                                {key: 'format', label: 'Format', placeholder: 'How should it be structured?'}
+                            ].map((field) =>
+                                React.createElement('div', {key: field.key},
+                                    React.createElement('label', {className: "block text-sm font-medium mb-2"},
+                                        field.label,
+                                        field.required && React.createElement('span', {style: {color: colors.cyan}}, ' *')
+                                    ),
+                                    React.createElement('input', {
+                                        type: "text",
+                                        value: prompt[field.key],
+                                        onChange: (e) => setPrompt({...prompt, [field.key]: e.target.value}),
+                                        placeholder: field.placeholder,
+                                        className: "w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors",
+                                        style: { 
                                             borderColor: colors.grayBlue,
                                             backgroundColor: darkMode ? '#00202c' : '#ffffff'
-                                        }}
-                                        onFocus={(e) => e.target.style.borderColor = colors.cyan}
-                                        onBlur={(e) => e.target.style.borderColor = colors.grayBlue}
-                                    />
-                                </div>
+                                        },
+                                        onFocus: (e) => e.target.style.borderColor = colors.cyan,
+                                        onBlur: (e) => e.target.style.borderColor = colors.grayBlue
+                                    })
+                                )
+                            ),
 
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Context</label>
-                                    <input
-                                        type="text"
-                                        value={prompt.context}
-                                        onChange={(e) => setPrompt({...prompt, context: e.target.value})}
-                                        placeholder="Provide background information..."
-                                        className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"
-                                        style={{ 
-                                            borderColor: colors.grayBlue,
-                                            backgroundColor: darkMode ? '#00202c' : '#ffffff'
-                                        }}
-                                        onFocus={(e) => e.target.style.borderColor = colors.cyan}
-                                        onBlur={(e) => e.target.style.borderColor = colors.grayBlue}
-                                    />
-                                </div>
+                            React.createElement('button', {
+                                onClick: buildPrompt,
+                                className: "w-full text-white py-3 px-4 rounded transition-all hover:opacity-90 font-medium",
+                                style: {backgroundColor: colors.cyan}
+                            },
+                                'Generate Prompt'
+                            )
+                        )
+                    ),
 
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Examples/Style</label>
-                                    <input
-                                        type="text"
-                                        value={prompt.examples}
-                                        onChange={(e) => setPrompt({...prompt, examples: e.target.value})}
-                                        placeholder="Reference style or tone..."
-                                        className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"
-                                        style={{ 
-                                            borderColor: colors.grayBlue,
-                                            backgroundColor: darkMode ? '#00202c' : '#ffffff'
-                                        }}
-                                        onFocus={(e) => e.target.style.borderColor = colors.cyan}
-                                        onBlur={(e) => e.target.style.borderColor = colors.grayBlue}
-                                    />
-                                </div>
+                    React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6`},
+                        React.createElement('div', {className: "flex items-center justify-between mb-4"},
+                            React.createElement('h3', {className: "font-semibold"}, 'Generated Prompt'),
+                            React.createElement('button', {
+                                onClick: copyPrompt,
+                                disabled: !generatedPrompt,
+                                className: "p-2 rounded transition-colors hover:opacity-80",
+                                style: {color: colors.cyan}
+                            },
+                                copied ? React.createElement(Check, {className: "w-4 h-4"}) : React.createElement(Copy, {className: "w-4 h-4"})
+                            )
+                        ),
+                        
+                        React.createElement('div', {className: "min-h-[200px] p-4 rounded border", style: { 
+                            backgroundColor: darkMode ? '#00202c' : '#f8fafc',
+                            borderColor: colors.grayBlue
+                        }},
+                            generatedPrompt || React.createElement('div', {className: "text-center pt-16", style: {color: colors.grayBlue}},
+                                'Your generated prompt will appear here...'
+                            )
+                        ),
 
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Format</label>
-                                    <input
-                                        type="text"
-                                        value={prompt.format}
-                                        onChange={(e) => setPrompt({...prompt, format: e.target.value})}
-                                        placeholder="How should it be structured?"
-                                        className="w-full px-3 py-2 border rounded focus:outline-none focus:border-opacity-100 transition-colors"
-                                        style={{ 
-                                            borderColor: colors.grayBlue,
-                                            backgroundColor: darkMode ? '#00202c' : '#ffffff'
-                                        }}
-                                        onFocus={(e) => e.target.style.borderColor = colors.cyan}
-                                        onBlur={(e) => e.target.style.borderColor = colors.grayBlue}
-                                    />
-                                </div>
-
-                                <button
-                                    onClick={buildPrompt}
-                                    className="w-full text-white py-3 px-4 rounded transition-all hover:opacity-90 font-medium"
-                                    style={{ backgroundColor: colors.cyan }}
-                                >
-                                    Generate Prompt
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
-                            <div className="flex items-center justify-between mb-4">
-                                <h3 className="font-semibold">Generated Prompt</h3>
-                                <button
-                                    onClick={copyPrompt}
-                                    disabled={!generatedPrompt}
-                                    className="p-2 rounded transition-colors hover:opacity-80"
-                                    style={{ color: colors.cyan }}
-                                >
-                                    {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                                </button>
-                            </div>
-                            
-                            <div className="min-h-[200px] p-4 rounded border" style={{ 
-                                backgroundColor: darkMode ? '#00202c' : '#f8fafc',
-                                borderColor: colors.grayBlue
-                            }}>
-                                {generatedPrompt || (
-                                    <div className="text-center pt-16" style={{ color: colors.grayBlue }}>
-                                        Your generated prompt will appear here...
-                                    </div>
-                                )}
-                            </div>
-
-                            {generatedPrompt && (
-                                <div className="mt-4 text-sm" style={{ color: colors.cyan }}>
-                                    Word count: {generatedPrompt.split(' ').length}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
+                        generatedPrompt && React.createElement('div', {className: "mt-4 text-sm", style: {color: colors.cyan}},
+                            `Word count: ${generatedPrompt.split(' ').length}`
+                        )
+                    )
+                )
             );
         };
 
@@ -629,101 +564,99 @@ Consider dietary restrictions and calorie requirements.`,
                 }
             };
 
-            return (
-                <div className="space-y-8">
-                    <div className="max-w-3xl">
-                        <h1 className="text-3xl font-bold mb-4">Advanced Techniques</h1>
-                        <p className="text-lg opacity-80">
-                            Master these three core techniques to dramatically improve your AI interactions.
-                        </p>
-                    </div>
+            return React.createElement('div', {className: "space-y-8"},
+                React.createElement('div', {className: "max-w-3xl"},
+                    React.createElement('h1', {className: "text-3xl font-bold mb-4"}, 'Advanced Techniques'),
+                    React.createElement('p', {className: "text-lg opacity-80"},
+                        'Master these three core techniques to dramatically improve your AI interactions.'
+                    )
+                ),
 
-                    {/* Technique Selection */}
-                    <div className="flex flex-wrap gap-4">
-                        {Object.entries(techniques).map(([key, technique]) => (
-                            <button
-                                key={key}
-                                onClick={() => setActiveTechnique(key)}
-                                className={`px-4 py-2 rounded transition-all ${
-                                    activeTechnique === key 
-                                        ? 'text-white shadow-md' 
-                                        : `${cardBgClass} border ${borderClass}`
-                                }`}
-                                style={{
-                                    backgroundColor: activeTechnique === key ? technique.color : undefined,
-                                    borderColor: activeTechnique === key ? technique.color : undefined
-                                }}
-                            >
-                                {technique.title}
-                            </button>
-                        ))}
-                    </div>
+                // Technique Selection
+                React.createElement('div', {className: "flex flex-wrap gap-4"},
+                    Object.entries(techniques).map(([key, technique]) =>
+                        React.createElement('button', {
+                            key: key,
+                            onClick: () => setActiveTechnique(key),
+                            className: `px-4 py-2 rounded transition-all ${
+                                activeTechnique === key 
+                                    ? 'text-white shadow-md' 
+                                    : `${cardBgClass} border ${borderClass}`
+                            }`,
+                            style: {
+                                backgroundColor: activeTechnique === key ? technique.color : undefined,
+                                borderColor: activeTechnique === key ? technique.color : undefined
+                            }
+                        },
+                            technique.title
+                        )
+                    )
+                ),
 
-                    {/* Technique Details */}
-                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
-                        <h2 className="text-xl font-semibold mb-3" style={{ color: techniques[activeTechnique].color }}>
-                            {techniques[activeTechnique].title}
-                        </h2>
-                        <p className="text-lg opacity-80 mb-6">{techniques[activeTechnique].description}</p>
-                        
-                        <div className="space-y-6">
-                            <div>
-                                <h3 className="font-medium mb-2">Example:</h3>
-                                <pre className="rounded p-4 text-sm overflow-x-auto whitespace-pre-wrap" style={{ 
-                                    backgroundColor: darkMode ? '#00202c' : '#f8fafc',
-                                    border: `1px solid ${colors.grayBlue}`
-                                }}>
-                                    {techniques[activeTechnique].example}
-                                </pre>
-                            </div>
+                // Technique Details
+                React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6`},
+                    React.createElement('h2', {className: "text-xl font-semibold mb-3", style: {color: techniques[activeTechnique].color}},
+                        techniques[activeTechnique].title
+                    ),
+                    React.createElement('p', {className: "text-lg opacity-80 mb-6"}, techniques[activeTechnique].description),
+                    
+                    React.createElement('div', {className: "space-y-6"},
+                        React.createElement('div', {},
+                            React.createElement('h3', {className: "font-medium mb-2"}, 'Example:'),
+                            React.createElement('pre', {className: "rounded p-4 text-sm overflow-x-auto whitespace-pre-wrap", style: { 
+                                backgroundColor: darkMode ? '#00202c' : '#f8fafc',
+                                border: `1px solid ${colors.grayBlue}`
+                            }},
+                                techniques[activeTechnique].example
+                            )
+                        ),
 
-                            <div>
-                                <h3 className="font-medium mb-2">Best For:</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {techniques[activeTechnique].bestFor.map((use, index) => (
-                                        <span 
-                                            key={index} 
-                                            className="px-3 py-1 rounded-full text-sm"
-                                            style={{ 
-                                                backgroundColor: `${techniques[activeTechnique].color}20`,
-                                                color: techniques[activeTechnique].color
-                                            }}
-                                        >
-                                            {use}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        React.createElement('div', {},
+                            React.createElement('h3', {className: "font-medium mb-2"}, 'Best For:'),
+                            React.createElement('div', {className: "flex flex-wrap gap-2"},
+                                techniques[activeTechnique].bestFor.map((use, index) =>
+                                    React.createElement('span', {
+                                        key: index,
+                                        className: "px-3 py-1 rounded-full text-sm",
+                                        style: { 
+                                            backgroundColor: `${techniques[activeTechnique].color}20`,
+                                            color: techniques[activeTechnique].color
+                                        }
+                                    },
+                                        use
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
 
-                    {/* Practice Exercise */}
-                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6`}>
-                        <h3 className="font-semibold mb-4">Practice Exercise</h3>
-                        <div className="rounded p-4" style={{ backgroundColor: `${colors.cyan}10` }}>
-                            <p className="font-medium mb-2">Try it yourself:</p>
-                            <p className="text-sm opacity-80">
-                                {activeTechnique === 'chain-of-thought' && "Ask AI to solve: 'If a train travels 60 mph for 2.5 hours, how far does it go?' Use step-by-step thinking."}
-                                {activeTechnique === 'few-shot' && "Create a few-shot prompt for converting temperatures from Celsius to Fahrenheit."}
-                                {activeTechnique === 'role-playing' && "Ask AI to act as a financial advisor and explain cryptocurrency basics."}
-                            </p>
-                        </div>
-                    </div>
+                // Practice Exercise
+                React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6`},
+                    React.createElement('h3', {className: "font-semibold mb-4"}, 'Practice Exercise'),
+                    React.createElement('div', {className: "rounded p-4", style: {backgroundColor: `${colors.cyan}10`}},
+                        React.createElement('p', {className: "font-medium mb-2"}, 'Try it yourself:'),
+                        React.createElement('p', {className: "text-sm opacity-80"},
+                            activeTechnique === 'chain-of-thought' && "Ask AI to solve: 'If a train travels 60 mph for 2.5 hours, how far does it go?' Use step-by-step thinking.",
+                            activeTechnique === 'few-shot' && "Create a few-shot prompt for converting temperatures from Celsius to Fahrenheit.",
+                            activeTechnique === 'role-playing' && "Ask AI to act as a financial advisor and explain cryptocurrency basics."
+                        )
+                    )
+                ),
 
-                    {/* Summary */}
-                    <div className={`${cardBgClass} border ${borderClass} rounded-lg p-6 text-center`}>
-                        <h3 className="font-semibold mb-2">Remember</h3>
-                        <p className="opacity-80">
-                            These techniques can be combined for even better results. Mix and match based on your specific needs.
-                        </p>
-                    </div>
-                </div>
+                // Summary
+                React.createElement('div', {className: `${cardBgClass} border ${borderClass} rounded-lg p-6 text-center`},
+                    React.createElement('h3', {className: "font-semibold mb-2"}, 'Remember'),
+                    React.createElement('p', {className: "opacity-80"},
+                        'These techniques can be combined for even better results. Mix and match based on your specific needs.'
+                    )
+                )
             );
         };
 
         // Render the app
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<PromptEngineeringGuide />);
+        root.render(React.createElement(PromptEngineeringGuide));
     </script>
 </body>
 </html>
