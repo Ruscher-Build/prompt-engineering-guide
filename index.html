@@ -31,29 +31,94 @@
             Network
         } = lucide;
 
-        // Your full App.jsx content goes here (copy everything from App.jsx)
+        // Your React component
         const PromptEngineeringGuide = () => {
-           {
-  "name": "prompt-engineering-guide",
-  "version": "1.0.0",
-  "description": "Interactive Prompt Engineering Guide",
-  "main": "index.html",
-  "scripts": {
-    "start": "serve",
-    "build": "echo 'No build step needed'"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "keywords": ["prompt-engineering", "ai", "guide"],
-  "author": "Creative Intelligence Lab"
-}
-        };
+            const [darkMode, setDarkMode] = React.useState(false);
+            const [currentPage, setCurrentPage] = React.useState('home');
+            const [copied, setCopied] = React.useState(false);
 
-        // Render the app
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<PromptEngineeringGuide />);
-    </script>
-</body>
-</html>
+            // Creative Intelligence Lab Brand Colors
+            const colors = {
+                darkTeal: '#004D40',
+                grayBlue: '#90A4AE',
+                cyan: '#00BCD4',
+                navy: '#1a1a2e',
+                oliveGreen: '#5a6f65',
+                darkerTeal: '#00202c',
+                lightGray: '#f8fafc',
+                midGray: '#e2e8f0'
+            };
+
+            // Theme classes with brand colors
+            const bgClass = darkMode ? 'bg-[#1a1a2e]' : 'bg-gray-50';
+            const textClass = darkMode ? 'text-gray-100' : 'text-[#1a1a2e]';
+            const cardBgClass = darkMode ? 'bg-[#00202c]' : 'bg-white';
+            const borderClass = darkMode ? 'border-[#004D40]' : 'border-[#90A4AE]';
+            const accentColor = '#00BCD4';
+
+            // Navigation
+            const navigateTo = (page) => {
+                setCurrentPage(page);
+                window.scrollTo(0, 0);
+            };
+
+            const toggleDarkMode = () => setDarkMode(!darkMode);
+
+            // Content sections
+            const sections = [
+                {
+                    id: 'basics',
+                    title: 'The Fundamentals',
+                    icon: <Brain className="w-6 h-6" />,
+                    description: 'Master the building blocks of effective prompts',
+                    color: colors.darkTeal
+                },
+                {
+                    id: 'builder',
+                    title: 'Prompt Lab',
+                    icon: <Network className="w-6 h-6" />,
+                    description: 'Experiment and create prompts in real-time',
+                    color: colors.cyan
+                },
+                {
+                    id: 'techniques',
+                    title: 'Advanced Methods',
+                    icon: <Zap className="w-6 h-6" />,
+                    description: 'Apply sophisticated techniques for complex tasks',
+                    color: colors.oliveGreen
+                }
+            ];
+
+            // Render different pages
+            const renderPage = () => {
+                switch (currentPage) {
+                    case 'home':
+                        return <HomePage darkMode={darkMode} navigateTo={navigateTo} sections={sections} colors={colors} />;
+                    case 'basics':
+                        return <BasicsPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                    case 'builder':
+                        return <BuilderPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                    case 'techniques':
+                        return <TechniquesPage darkMode={darkMode} navigateTo={navigateTo} colors={colors} />;
+                    default:
+                        return <HomePage darkMode={darkMode} navigateTo={navigateTo} sections={sections} colors={colors} />;
+                }
+            };
+
+            return (
+                <div className={`min-h-screen ${bgClass} ${textClass} transition-colors duration-300`}>
+                    {/* Header */}
+                    <header className={`sticky top-0 z-50 ${cardBgClass} border-b ${borderClass} shadow-sm`}>
+                        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                {currentPage !== 'home' && (
+                                    <button 
+                                        onClick={() => navigateTo('home')}
+                                        className="p-2 rounded hover:bg-[#004D40] hover:bg-opacity-10 transition-colors"
+                                    >
+                                        <ArrowLeft className="w-5 h-5" />
+                                    </button>
+                                )}
+                                <h1 className="text-xl font-bold flex items-center gap-2">
+                                    <Network className="w-6 h-6" style={{ color: accentColor }} />
+                                    Prompt Engineering Guide
