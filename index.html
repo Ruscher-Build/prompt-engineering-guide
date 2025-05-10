@@ -31,7 +31,7 @@
             Network
         } = lucide;
 
-        // Your React component
+        // Main Component
         const PromptEngineeringGuide = () => {
             const [darkMode, setDarkMode] = React.useState(false);
             const [currentPage, setCurrentPage] = React.useState('home');
@@ -186,11 +186,6 @@
                                 key={section.id}
                                 onClick={() => navigateTo(section.id)}
                                 className={`${cardBgClass} border ${borderClass} rounded-lg p-6 text-left transition-all duration-300 hover:shadow-lg group transform hover:-translate-y-1`}
-                                style={{
-                                    ':hover': {
-                                        borderColor: section.color
-                                    }
-                                }}
                                 onMouseEnter={(e) => e.currentTarget.style.borderColor = section.color}
                                 onMouseLeave={(e) => e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue}
                             >
@@ -465,9 +460,6 @@
                                     key={template.name}
                                     onClick={() => loadTemplate(template.prompt)}
                                     className={`${cardBgClass} border ${borderClass} rounded p-4 text-left transition-all hover:shadow-md`}
-                                    style={{
-                                        ':hover': { borderColor: colors.cyan }
-                                    }}
                                     onMouseEnter={(e) => e.currentTarget.style.borderColor = colors.cyan}
                                     onMouseLeave={(e) => e.currentTarget.style.borderColor = darkMode ? colors.darkTeal : colors.grayBlue}
                                 >
@@ -609,10 +601,10 @@
                     title: 'Chain of Thought',
                     description: 'Guide AI through step-by-step reasoning',
                     example: `Let's think step by step:
-            1. First, identify the problem
-            2. Break it into smaller parts
-            3. Solve each part
-            4. Combine for the final answer`,
+1. First, identify the problem
+2. Break it into smaller parts
+3. Solve each part
+4. Combine for the final answer`,
                     bestFor: ['Math problems', 'Logic puzzles', 'Complex analysis'],
                     color: colors.cyan
                 },
@@ -620,9 +612,9 @@
                     title: 'Few-Shot Learning',
                     description: 'Provide examples to establish patterns',
                     example: `Translate English to French:
-            English: "Hello" → French: "Bonjour"
-            English: "Thank you" → French: "Merci"
-            English: "Goodbye" → French: ???`,
+English: "Hello" → French: "Bonjour"
+English: "Thank you" → French: "Merci"
+English: "Goodbye" → French: ???`,
                     bestFor: ['Pattern recognition', 'Style consistency', 'Format matching'],
                     color: colors.darkTeal
                 },
@@ -630,8 +622,8 @@
                     title: 'Role-Based Prompting',
                     description: 'Assign specific expertise to the AI',
                     example: `Act as a professional nutritionist.
-            Provide a meal plan for someone looking to build muscle.
-            Consider dietary restrictions and calorie requirements.`,
+Provide a meal plan for someone looking to build muscle.
+Consider dietary restrictions and calorie requirements.`,
                     bestFor: ['Expert advice', 'Specialized knowledge', 'Consistent perspective'],
                     color: colors.oliveGreen
                 }
